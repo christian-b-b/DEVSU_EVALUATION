@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "b70f8122-617c-4cd9-80bf-2fccfe8534d7",
+		"name": "DEVSU PRUEBA PRACTICA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6605311"
+	},
+	"item": [
+		{
+			"name": "01_CUSTOMER",
+			"item": [
+				{
+					"name": "CREATE CUSTOMER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"genderCode\":\"M\",\r\n    \"birthDate\":\"1992-07-29\",\r\n    \"documentTypeCode\":\"DNI\",\r\n    \"documentNumber\":\"29167788\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460666\",\r\n    \"password\":\"555555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/v1/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CUSTOMER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"names\":\"ChristianNNN\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"genderCode\":\"M\",\r\n    \"birthDate\":\"1992-07-29\",\r\n    \"documentTypeCode\":\"DNI\",\r\n    \"documentNumber\":\"29167788\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460666\",\r\n    \"password\":\"555555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/v1/customer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FIND ALL CUSTOMER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"gender\":{  \"code\":\"M\",\r\n                \"name\":\"Masculino\"},\r\n    \"birthDate\":\"1987-09-25\",\r\n    \"documentType\":{\"code\":\"DNI\",\r\n                    \"name\":\"Documento Nacional de Identidad\"},\r\n    \"documentNumber\":\"44524600\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460840\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/v1/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FIND CUSTOMER BY ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"gender\":{  \"code\":\"M\",\r\n                \"name\":\"Masculino\"},\r\n    \"birthDate\":\"1987-09-25\",\r\n    \"documentType\":{\"code\":\"DNI\",\r\n                    \"name\":\"Documento Nacional de Identidad\"},\r\n    \"documentNumber\":\"44524600\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460840\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/v1/customer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CUSTOMER BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"gender\":{  \"code\":\"M\",\r\n                \"name\":\"Masculino\"},\r\n    \"birthDate\":\"1987-09-25\",\r\n    \"documentType\":{\"code\":\"DNI\",\r\n                    \"name\":\"Documento Nacional de Identidad\"},\r\n    \"documentNumber\":\"44524600\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460840\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/v1/customer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02_ACCOUNT",
+			"item": [
+				{
+					"name": "CREATE ACCOUNT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"idCustomer\":1,\r\n\t\"accountNumber\":\"000111122225555\",\r\n\t\"accountTypeCode\":\"AHORRO\",\r\n\t\"initialBalance\":\"1000.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/v1/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ACCOUNT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"idCustomer\":1,\r\n\t\"accountNumber\":\"000111122223333\",\r\n\t\"accountTypeCode\":\"CORRIENTE\",\r\n\t\"initialBalance\":\"1000.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/v1/account/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FIND ALL ACCOUNTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/v1/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FIND ACCOUNT BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/v1/account/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ACCOUNT BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/v1/account/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03_MOVEMENTS",
+			"item": [
+				{
+					"name": "CREATE MOVEMENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\r\n\t\"accountNumber\":\"000111122226666\",\r\n    \"movementTypeCode\":\"WITHDRAW\",\r\n\t\"amount\":\"800.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/v1/movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04_REPORT",
+			"item": [
+				{
+					"name": "REPORT ALL MOVEMENTS BY CUSTOMER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/v1/report?startDate=2024-04-07&endDate=2024-04-09&idCustomer=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"report"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-04-07"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-04-09"
+								},
+								{
+									"key": "idCustomer",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
