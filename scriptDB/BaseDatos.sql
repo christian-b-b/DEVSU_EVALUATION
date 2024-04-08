@@ -1,0 +1,173 @@
+----------------------------
+-- finance_db DB
+----------------------------
+
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'finance_db')
+BEGIN
+	CREATE DATABASE finance_db;
+END    
+GO
+
+USE finance_db;
+GO
+----------------------------
+-- FINANCE_SCHEMA scheme
+----------------------------
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'FINANCE_SCHEMA')
+BEGIN
+	EXEC('CREATE SCHEMA FINANCE_SCHEMA');
+END	
+GO
+
+
+----------------------------
+-- PERSON table 
+----------------------------
+IF OBJECT_ID ('FINANCE_SCHEMA.T_PERSON', 'U') IS NULL
+	BEGIN
+		CREATE TABLE FINANCE_SCHEMA.T_PERSON (
+			idPerson INT NOT NULL IDENTITY(1,1),						
+			names VARCHAR(60) NOT NULL,
+			firstLastName VARCHAR(40) NOT NULL,
+			secondLastName VARCHAR(40) NOT NULL,			
+			genderCode VARCHAR(20),
+			birthDate  DATE NOT NULL,			
+			documentTypeCode VARCHAR(20),
+			documentNumber VARCHAR(20)NOT NULL,
+			address VARCHAR(100)NOT NULL,
+			cellphone VARCHAR(9) NOT NULL,			
+		)
+		ALTER TABLE FINANCE_SCHEMA.T_PERSON
+			ADD CONSTRAINT PK_PERSON
+			PRIMARY KEY (idPerson);			
+	END
+
+----------------------------
+-- CUSTOMER table
+----------------------------
+IF OBJECT_ID ('FINANCE_SCHEMA.T_CUSTOMER', 'U') IS NULL
+	BEGIN
+		CREATE TABLE FINANCE_SCHEMA.T_CUSTOMER (			
+			idCustomer INT NOT NULL,			
+			password VARCHAR(60) NOT NULL,		
+			state TINYINT DEFAULT 1 NOT NULL,
+			registrationDate DATETIME DEFAULT GETDATE() NOT NULL
+		)
+		ALTER TABLE FINANCE_SCHEMA.T_CUSTOMER
+			ADD CONSTRAINT PK_CUSTOMER
+			PRIMARY KEY (idCustomer);
+			
+		ALTER TABLE FINANCE_SCHEMA.T_CUSTOMER
+			ADD CONSTRAINT FK_CUSTOMER_PERSON
+			FOREIGN KEY (idCustomer)
+			REFERENCES FINANCE_SCHEMA.T_PERSON(idPerson);				
+	END
+
+----------------------------
+-- ACCOUNT  table
+----------------------------
+IF OBJECT_ID ('FINANCE_SCHEMA.T_ACCOUNT', 'U') IS NULL
+	BEGIN
+		CREATE TABLE FINANCE_SCHEMA.T_ACCOUNT (
+			idAccount INT NOT NULL IDENTITY(1,1),
+			idCustomer INT NOT NULL,
+			accountNumber  VARCHAR(20) NOT NULL,
+			accountTypeCode VARCHAR(20),
+			initialBalance DECIMAL(15, 2) NOT NULL,				
+			state TINYINT DEFAULT 1 NOT NULL,
+			registrationDate DATETIME DEFAULT GETDATE() NOT NULL
+		)
+		ALTER TABLE FINANCE_SCHEMA.T_ACCOUNT
+			ADD CONSTRAINT PK_ACCOUNT
+			PRIMARY KEY (idAccount);
+			
+		ALTER TABLE FINANCE_SCHEMA.T_ACCOUNT
+			ADD CONSTRAINT FK_ACCOUNT_CUSTOMER
+			FOREIGN KEY (idCustomer)
+			REFERENCES FINANCE_SCHEMA.T_CUSTOMER(idCustomer);		
+	END
+
+	
+----------------------------
+-- MOVEMENT table
+----------------------------
+IF OBJECT_ID ('FINANCE_SCHEMA.T_MOVEMENT', 'U') IS NULL
+	BEGIN
+		CREATE TABLE FINANCE_SCHEMA.T_MOVEMENT (
+			idMovement INT NOT NULL IDENTITY(1,1),
+			idAccount INT NOT NULL,
+			movementTypeCode VARCHAR(20),
+			movementDate DATE NOT NULL,
+			initialBalance DECIMAL(15, 2) NOT NULL,	
+			amount DECIMAL(15, 2) NOT NULL,			
+			state TINYINT DEFAULT 1 NOT NULL,
+			registrationDate DATETIME DEFAULT GETDATE() NOT NULL
+		)
+		ALTER TABLE FINANCE_SCHEMA.T_MOVEMENT
+			ADD CONSTRAINT PK_MOVEMENT
+			PRIMARY KEY (idMovement);
+		
+		ALTER TABLE FINANCE_SCHEMA.T_MOVEMENT
+			ADD CONSTRAINT FK_MOVEMENT_ACCOUNT
+			FOREIGN KEY (idAccount)
+			REFERENCES FINANCE_SCHEMA.T_ACCOUNT(idAccount);			
+	END	
+
+----------------------------------------------
+----------------------------
+-- MASTER table
+----------------------------
+IF OBJECT_ID ('FINANCE_SCHEMA.T_MASTER', 'U') IS NULL
+	BEGIN
+		CREATE TABLE FINANCE_SCHEMA.T_MASTER (
+			idMaster INT NOT NULL IDENTITY(1,1),
+			parentCode VARCHAR(20),
+			code VARCHAR(20),
+			description VARCHAR(100),					
+			state TINYINT DEFAULT 1 NOT NULL,
+			registrationDate DATETIME DEFAULT GETDATE() NOT NULL
+		)
+		ALTER TABLE FINANCE_SCHEMA.T_MASTER
+			ADD CONSTRAINT PK_MASTER
+			PRIMARY KEY (idMaster);			
+	END	
+	
+--------------------------------------------INITIAL DATA------------------------
+------------------------------
+-- INSERT T_MASTER
+------------------------------
+
+IF OBJECT_ID('FINANCE_SCHEMA.INSERT_MASTER') IS NOT NULL
+BEGIN 
+    DROP PROC FINANCE_SCHEMA.INSERT_MASTER
+END 
+GO
+
+CREATE PROCEDURE FINANCE_SCHEMA.INSERT_MASTER
+AS
+BEGIN
+	-----------DOCUMENT TYPE----------
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='DNI')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('DOCUMENT_TYPE','DNI', 'DOCUMENTO NACIONAL DE IDENTIDAD');
+		
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='CE')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('DOCUMENT_TYPE','CE', 'CARNET DE EXTRANGERÍA');
+	---------- GENDER---------------------
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='M')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('GENDER','M', 'MASCULINO');
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='F')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('GENDER','F', 'FEMENINO');
+	-----------ACCOUNT TYPE---------------
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='AHORRO')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('ACCOUNT_TYPE','AHORRO', 'AHORRO');
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='CORRIENTE')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('ACCOUNT_TYPE','CORRIENTE', 'CORRIENTE');
+	-----------MOVEMENT TYPE---------------
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='WITHDRAW ')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('MOVEMENT_TYPE','WITHDRAW', 'RETIRO');
+	IF NOT EXISTS (SELECT * FROM FINANCE_SCHEMA.T_MASTER WHERE code='DEPOSIT')
+		INSERT INTO FINANCE_SCHEMA.T_MASTER(parentCode,code, description) VALUES('MOVEMENT_TYPE','DEPOSIT', 'DEPOSITO');
+	
+END
+GO
+EXEC FINANCE_SCHEMA.INSERT_MASTER;	
