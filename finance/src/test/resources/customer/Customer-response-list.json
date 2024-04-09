@@ -1,0 +1,10 @@
+[
+  {
+    "idCustomer": 1,
+    "names": "Christian",
+    "address": "Asoc. Ciudad Magisterial F 10",
+    "cellphone": "956460666",
+    "password": "555555",
+    "state": true
+  }
+]
