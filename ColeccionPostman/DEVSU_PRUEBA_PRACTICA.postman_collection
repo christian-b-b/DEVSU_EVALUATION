@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b70f8122-617c-4cd9-80bf-2fccfe8534d7",
+		"_postman_id": "04c8699c-715a-4900-930f-e366afc79918",
 		"name": "DEVSU PRUEBA PRACTICA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6605311"
@@ -78,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"gender\":{  \"code\":\"M\",\r\n                \"name\":\"Masculino\"},\r\n    \"birthDate\":\"1987-09-25\",\r\n    \"documentType\":{\"code\":\"DNI\",\r\n                    \"name\":\"Documento Nacional de Identidad\"},\r\n    \"documentNumber\":\"44524600\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460840\",\r\n    \"password\":\"12345\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -110,7 +110,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"gender\":{  \"code\":\"M\",\r\n                \"name\":\"Masculino\"},\r\n    \"birthDate\":\"1987-09-25\",\r\n    \"documentType\":{\"code\":\"DNI\",\r\n                    \"name\":\"Documento Nacional de Identidad\"},\r\n    \"documentNumber\":\"44524600\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460840\",\r\n    \"password\":\"12345\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -140,7 +140,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"names\":\"Christian\",\r\n    \"firstLastName\":\"Baldeón\",\r\n    \"secondLastName\":\"Baldeón\",\r\n    \"gender\":{  \"code\":\"M\",\r\n                \"name\":\"Masculino\"},\r\n    \"birthDate\":\"1987-09-25\",\r\n    \"documentType\":{\"code\":\"DNI\",\r\n                    \"name\":\"Documento Nacional de Identidad\"},\r\n    \"documentNumber\":\"44524600\",\r\n    \"address\":\"Asoc. Ciudad Magisterial F 10\",\r\n    \"cellphone\":\"956460840\",\r\n    \"password\":\"12345\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
